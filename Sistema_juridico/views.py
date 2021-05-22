@@ -88,7 +88,7 @@ class CrearCaso(CreateView):
     model = Caso
     form_class=CasoForm
     template_name = "casos/caso.html"
-    success_url=reverse_lazy('inicio')
+    success_url=reverse_lazy('caso')
 
 class CrearTipoDeProceso(CreateView):
     model =TipoDeProceso
@@ -185,4 +185,9 @@ class ListaCasos(ListView):
         ).distinct()
         return super().get_queryset()
     #success_url=reverse_lazy('inicio')
+
+class EliminarCaso(DeleteView):
+    model = Caso
+    template_name = "casos/caso_borrar.html"
+    success_url=reverse_lazy('caso')
     

@@ -225,5 +225,5 @@ class Caso(models.Model):
 
     def __str__(self):
         """Unicode representation of Caso."""
-        return self.codigo
+        return self.descripcion
     
