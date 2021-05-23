@@ -179,9 +179,8 @@ class ListaCasos(ListView):
     def get_queryset(self):
         if self.request.GET.get('buscar') is not None:
             return Caso.objects.filter(
-            Q(nombre__icontains=self.request.GET['buscar'])|
-            Q(correo__icontains=self.request.GET['buscar'])|
-            Q(dui__icontains=self.request.GET['buscar'])
+            Q(codigo__icontains=self.request.GET['buscar'])|
+            Q(descripcion__icontains=self.request.GET['buscar'])
         ).distinct()
         return super().get_queryset()
     #success_url=reverse_lazy('inicio')
@@ -189,5 +188,11 @@ class ListaCasos(ListView):
 class EliminarCaso(DeleteView):
     model = Caso
     template_name = "casos/caso_borrar.html"
+    success_url=reverse_lazy('caso')
+
+class ActualizarCaso(UpdateView):
+    model = Caso
+    form_class=CasoForm
+    template_name = "casos/caso_editar.html"
     success_url=reverse_lazy('caso')
     

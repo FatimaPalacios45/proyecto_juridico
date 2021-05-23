@@ -18,4 +18,5 @@ urlpatterns = [
     path('eliminar_cliente/<int:pk>',EliminarCliente.as_view(),name='eliminar_cliente'),
     path('caso/',ListaCasos.as_view(), name='caso'),
     path('eliminar_caso/<int:pk>',EliminarCaso.as_view(),name='eliminar_caso'),
+    path('editar_caso/<int:pk>',ActualizarCaso.as_view(),name='editar_caso'),
 ]

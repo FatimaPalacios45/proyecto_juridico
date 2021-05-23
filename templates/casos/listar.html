@@ -1,4 +1,4 @@
-{%extends 'base.html'%}{%load static%}{%block title%}Clientes{%endblock%} {%block content%}
+{%extends 'base.html'%}{%load static%}{%block title%}Casos{%endblock%} {%block content%}
 <div class="card">
     <div class="card-header">
         <strong>Casos</strong>
@@ -38,6 +38,7 @@
                             <th scope="col ">codigo</th>
                             <th scope="col ">Descripcion</th>
                             <th scope="col ">Estado</th>
+                            <th scope="col ">Acciones</th>
 
                         </tr>
                     </thead>
@@ -48,9 +49,14 @@
                             <td>{{cliente.id_abogado.get_full_name}}</td>
                             <td>{{cliente.codigo}}</td>
                             <td>{{cliente.descripcion}}</td>
-                            <td>{{cliente.estado}}</td>
-                            <td><a onclick="abrir_modal_edicion()" class="btn btn-warning">Editar</a>
-                                <a onclick="abrir_modal_eliminacion()" class="btn btn-danger">Eliminar</a>
+                            {% firstof cliente.estado as value %}
+                            {%if value %}
+                            <td>Finalizado</td>
+                            {%else%}
+                            <td>En Proceso</td>
+                            {%endif%}
+                            <td><a onclick="abrir_modal_edicion('{% url 'editar_caso' cliente.codigo %}')" class="btn btn-warning">Editar</a>
+                                <a onclick="abrir_modal_eliminacion('{% url 'eliminar_caso' cliente.codigo %}')" class="btn btn-danger">Eliminar</a>
 
                             </td>
                         </tr>
