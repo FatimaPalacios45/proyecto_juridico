@@ -113,16 +113,11 @@ class CasoForm(forms.ModelForm):
                     'class':'form-control form-control-sm col-sm-6'
                 }
             ),
-            'pago':forms.Select(
+            'tipo_pago':forms.RadioSelect(
                 attrs={
-                    'id':'pago',
-                    'class':'form-control form-control-sm col-sm-6'
-                }
-            ),
-            'audiencia':forms.Select(
-                attrs={
-                    'id':'audiencia',
-                    'class':'form-control form-control-sm col-sm-6'
+                    '':'Contado',
+                    '':'Credito',
+                    'id':'tipo_pago',
                 }
             ),
             
@@ -453,3 +448,46 @@ class FormAbogado(forms.ModelForm):
         if commit:
             usuario.save()
         return usuario
+
+
+class FormaDePagoForm(forms.ModelForm):
+    class Meta:
+        model=FormaDePago
+        fields='__all__'
+        labels={
+          
+        }
+        widgets={
+
+           'plazo':forms.NumberInput (
+                attrs={
+                    'class':'form-control form-control-sm col-sm-4',
+                    'placeholder':'Ingrese cantidad del plazo',
+                    'id':'plazo',
+                }
+            ),   
+
+           'cuota':forms.NumberInput(
+                attrs={
+                    'id':'cuota',
+                    'class':'form-control form-control-sm col-sm-4'
+                }
+            ),
+        
+            'monto':forms.TextInput(
+                     attrs={
+                         'class':'form-control form-control-sm col-sm-4',
+                         'id':'monto'
+                         }
+    
+                 ),
+
+            'fecha_fin_credito':forms.DateInput(
+                     attrs={
+                         'class':'form-control form-control-sm col-sm-4',
+                         'type': 'date',
+                         'id':'fecha_fin_credito'
+                         }
+    
+                 )
+        }

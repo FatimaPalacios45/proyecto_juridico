@@ -8,6 +8,7 @@
 
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %} {{form.as_p}}
+                <a onclick="abrir_modal_edicion('{% url 'crear_formaPago'  %}')" class="btn btn-warning">Asignar Cuota</a>
 
                 <ul class="errorlist">
                     <p></p>
@@ -21,3 +22,10 @@
     </div>
 </div>
 {%endblock%}
+
+<script type="text/javascript">
+    function abrir_modal_edicion(url) {
+        $('#edicion').load(url, function() {
+            $(this).modal('show');
+        });
+    }

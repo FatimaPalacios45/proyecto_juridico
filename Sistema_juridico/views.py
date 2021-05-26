@@ -196,3 +196,9 @@ class ActualizarCaso(UpdateView):
     template_name = "casos/caso_editar.html"
     success_url=reverse_lazy('caso')
     
+class CrearFormaDePago(CreateView):
+    model = FormaDePago
+    form_class=FormaDePagoForm
+    template_name = "formapago/crear.html"
+    context_object_name='formapagos'
+    success_url=reverse_lazy('CrearCaso')    
